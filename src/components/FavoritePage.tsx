@@ -3,7 +3,10 @@ import styled from "styled-components";
 import { VideoItem } from "../components";
 import { FlexRow } from "../common";
 import { youtubeContentDetails } from "../api/youtubeContentDetails";
-import { getVideoContentDetail } from "../core/actions/videosActions";
+import {
+  getVideoContentDetail,
+  getLocalStorageId
+} from "../core/actions/videosActions";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 
@@ -15,13 +18,15 @@ interface FavoritePageState {
 
 interface FavoritePageDispatchProps {
   getVideoContentDetail: (detail: any) => void;
+  getLocalStorageId: (id: any) => void;
 }
 
 type BaseComponentProps = FavoritePageProps & FavoritePageDispatchProps;
 
 function mapDispatchToProps(dispatch: Dispatch): FavoritePageDispatchProps {
   return {
-    getVideoContentDetail: detail => dispatch(getVideoContentDetail(detail))
+    getVideoContentDetail: detail => dispatch(getVideoContentDetail(detail)),
+    getLocalStorageId: id => dispatch(getLocalStorageId(id))
   };
 }
 
@@ -37,6 +42,7 @@ class FavoritePage extends React.Component<
     if (localStorage.length > 0) {
       const result = JSON.parse(localStorage.getItem("localStorageId") || "{}");
       this.setState({ localStorageDate: result.newItems });
+      this.props.getLocalStorageId(result.newItems);
     }
   }
 

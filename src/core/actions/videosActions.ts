@@ -4,6 +4,7 @@ import {
   VIDEOS_PAGE_TOKEN,
   VIDEOS_CONTENT_DETAIL,
   CLEAR_VIDEOS_CONTENT_DETAIL,
+  GET_LOCAL_STORAGE_ID,
   UPDATE_LOCAL_STORAGE_ID,
   DELETE_LOCAL_STORAGE_ID
 } from "../constants/action_type";
@@ -42,6 +43,13 @@ export const getVideoContentDetail = (item: any) => {
 export const clearVideoContentDetail = () => {
   return {
     type: CLEAR_VIDEOS_CONTENT_DETAIL
+  };
+};
+
+export const getLocalStorageId = (id: string) => {
+  return {
+    type: GET_LOCAL_STORAGE_ID,
+    id
   };
 };
 

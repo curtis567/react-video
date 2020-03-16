@@ -4,6 +4,7 @@ import {
   VIDEOS_PAGE_TOKEN,
   VIDEOS_CONTENT_DETAIL,
   CLEAR_VIDEOS_CONTENT_DETAIL,
+  GET_LOCAL_STORAGE_ID,
   UPDATE_LOCAL_STORAGE_ID,
   DELETE_LOCAL_STORAGE_ID
 } from "../constants/action_type";
@@ -48,9 +49,16 @@ function videosContentDetailsCalculator(state = [], action: any) {
 }
 
 function LocalStorageIdCalculator(state: Array<any> = [], action: any) {
-  const newItems = [...state];
+  let newItems = [...state];
   const index = newItems.findIndex(item => item === action.id);
   switch (action.type) {
+    case GET_LOCAL_STORAGE_ID:
+      if (state.length === 0) {
+        newItems = [...action.id];
+        return newItems;
+      } else {
+        return newItems;
+      }
     case UPDATE_LOCAL_STORAGE_ID:
       if (index === -1) {
         newItems.push(action.id);

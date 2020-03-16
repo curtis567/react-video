@@ -4,7 +4,11 @@ import { VideoList, VideoPagination } from "../components";
 import { connect } from "react-redux";
 import { youTubeSearch } from "../api/youTubeSearch";
 import { Dispatch } from "redux";
-import { getVideoList, getVideoPageToken } from "../core/actions/videosActions";
+import {
+  getVideoList,
+  getVideoPageToken,
+  getLocalStorageId
+} from "../core/actions/videosActions";
 import { FlexRow } from "../common";
 
 interface HomePageProps {}
@@ -20,6 +24,7 @@ interface HomePageStateProps {
 interface HomePageDispatchProps {
   getVideoList: (video: any) => void;
   getVideoPageToken: (pageToken: any) => void;
+  getLocalStorageId: (id: any) => void;
 }
 
 function mapStateToProps(state: any): HomePageStateProps {
@@ -31,7 +36,8 @@ function mapStateToProps(state: any): HomePageStateProps {
 function mapDispatchToProps(dispatch: Dispatch): HomePageDispatchProps {
   return {
     getVideoList: videos => dispatch(getVideoList(videos)),
-    getVideoPageToken: pageToken => dispatch(getVideoPageToken(pageToken))
+    getVideoPageToken: pageToken => dispatch(getVideoPageToken(pageToken)),
+    getLocalStorageId: id => dispatch(getLocalStorageId(id))
   };
 }
 
@@ -44,10 +50,16 @@ class HomePage extends React.Component<BaseComponentProps, HomePageState> {
     selectedVideo: null
   };
 
-  public async componentDidMount() {
+  public componentWillMount() {
+    if (localStorage.length > 0) {
+      const result = JSON.parse(localStorage.getItem("localStorageId") || "{}");
+      this.props.getLocalStorageId(result.newItems);
+    }
+  }
+
+  public componentDidMount() {
     const { getVideoList, getVideoPageToken } = this.props;
     youTubeSearch(null, getVideoList, getVideoPageToken);
-    localStorage.clear();
   }
 
   render() {
