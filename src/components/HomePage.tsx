@@ -47,6 +47,7 @@ class HomePage extends React.Component<BaseComponentProps, HomePageState> {
   public async componentDidMount() {
     const { getVideoList, getVideoPageToken } = this.props;
     youTubeSearch(null, getVideoList, getVideoPageToken);
+    localStorage.clear();
   }
 
   render() {
