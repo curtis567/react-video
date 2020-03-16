@@ -11,7 +11,7 @@ const routes = [
   {
     path: `${rootPath}/Favorite`,
     component: Favorite,
-    breadcrumbName: "Book"
+    breadcrumbName: "Favorite"
   }
 ];
 
