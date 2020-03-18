@@ -5,7 +5,7 @@
 npm install
 
 # serve with at localhost:8008
-yarn start
+npm start
 
 # build for production with minification and ugilification
 npm run deploy
