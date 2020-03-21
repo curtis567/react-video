@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { getVideoList, getVideoPageToken } from "../core/actions/videosActions";
 import { Pagination } from "react-bootstrap";
+import { VideoDetail, VideoPageToken } from "../core/types/Video";
 
 interface VideoPaginationState {
   paginationNumber: number;
@@ -11,13 +12,13 @@ interface VideoPaginationState {
 
 interface VideoPaginationStateProps {
   videos: Array<any>;
-  searchItem: any;
-  pageToken: any;
+  searchItem: string;
+  pageToken: VideoPageToken;
 }
 
 interface VideoPaginationDispatchProps {
-  getVideoList: (video: any) => void;
-  getVideoPageToken: (pageToken: any) => void;
+  getVideoList: (video: VideoDetail) => void;
+  getVideoPageToken: (pageToken: VideoPageToken) => void;
 }
 
 function mapStateToProps(state: any): VideoPaginationStateProps {

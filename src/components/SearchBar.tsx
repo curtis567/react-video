@@ -9,14 +9,15 @@ import {
   getVideoSearchItem,
   getVideoPageToken
 } from "../core/actions/videosActions";
+import { VideoDetail } from "../core/types/Video";
 
 interface SearchBarStateProps {
-  searchItem: any;
+  searchItem: string;
 }
 
 interface SearchBarDispatchProps {
-  getVideoList: (video: any) => void;
-  searchItemCalculator: (item: any) => void;
+  getVideoList: (video: VideoDetail) => void;
+  searchItemCalculator: (item: string) => void;
   getVideoPageToken: (pageToken: any) => void;
 }
 

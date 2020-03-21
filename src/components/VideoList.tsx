@@ -10,7 +10,7 @@ interface VideoListProps {
 }
 
 interface VideoListDispatchProps {
-  getVideoContentDetail: (detail: any) => void;
+  getVideoContentDetail: (detail: string) => void;
 }
 
 function mapDispatchToProps(dispatch: Dispatch): VideoListDispatchProps {

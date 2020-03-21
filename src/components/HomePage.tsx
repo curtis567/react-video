@@ -10,21 +10,18 @@ import {
   getLocalStorageId
 } from "../core/actions/videosActions";
 import { FlexRow } from "../common";
+import { VideoDetail } from "../core/types/Video";
 
 interface HomePageProps {}
-
-interface HomePageState {
-  selectedVideo: any;
-}
 
 interface HomePageStateProps {
   videos: Array<any>;
 }
 
 interface HomePageDispatchProps {
-  getVideoList: (video: any) => void;
+  getVideoList: (video: VideoDetail) => void;
   getVideoPageToken: (pageToken: any) => void;
-  getLocalStorageId: (id: any) => void;
+  getLocalStorageId: (id: string) => void;
 }
 
 function mapStateToProps(state: any): HomePageStateProps {
@@ -45,11 +42,7 @@ type BaseComponentProps = HomePageProps &
   HomePageStateProps &
   HomePageDispatchProps;
 
-class HomePage extends React.Component<BaseComponentProps, HomePageState> {
-  state = {
-    selectedVideo: null
-  };
-
+class HomePage extends React.Component<BaseComponentProps> {
   public componentWillMount() {
     if (localStorage.length > 0) {
       const result = JSON.parse(localStorage.getItem("localStorageId") || "{}");

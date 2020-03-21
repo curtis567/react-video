@@ -1,8 +1,8 @@
 import youTube, { youTubeKey } from "../api/youtube";
 
 export async function youtubeContentDetails(
-  videoId: any,
-  getVideoContentDetail: any
+  videoId: string,
+  getVideoContentDetail: (duration: string) => void
 ) {
   const res = await youTube.get("videos", {
     params: {

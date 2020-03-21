@@ -5,9 +5,6 @@ interface VideoPlayerProps {
 }
 
 class VideoPlayer extends React.Component<VideoPlayerProps> {
-  public videoNode: any;
-  public player: any;
-
   render() {
     const { videoid } = this.props;
     const videoSrc = `https://www.youtube.com/embed/${videoid}`;

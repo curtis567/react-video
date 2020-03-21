@@ -11,10 +11,11 @@ import {
 import { FaServer, FaCheck } from "react-icons/fa";
 import { VideoPlayer } from "../components";
 import { Modal } from "react-bootstrap";
+import { VideoDetail } from "../core/types/Video";
 
 interface VideoItemProps {
-  video: any;
-  TimeIndex: any;
+  video: VideoDetail;
+  TimeIndex: number;
 }
 
 interface VideoItemState {
@@ -23,7 +24,7 @@ interface VideoItemState {
 }
 
 interface VideoItemStateProps {
-  videosDetail: Array<any>;
+  videosDetail: Array<VideoDetail>;
 }
 
 interface VideoItemDispatchProps {
@@ -83,7 +84,7 @@ class VideoItem extends React.Component<BaseComponentProps, VideoItemState> {
     return this.element.current.scrollWidth <= this.element.current.offsetWidth;
   };
 
-  SaveVideo = (video: any) => {
+  SaveVideo = (video: VideoDetail) => {
     const { updateLocalStorageId, deleteLocalStorageId } = this.props;
     const result = JSON.parse(localStorage.getItem(video.id.videoId) || "{}");
     if (JSON.stringify(result) === JSON.stringify({})) {
@@ -138,13 +139,13 @@ class VideoItem extends React.Component<BaseComponentProps, VideoItemState> {
         <VideoItemContent>
           <h3
             ref={this.element}
-            title={this.TextFit() ? null : video.snippet.title}
+            title={this.TextFit() ? "" : video.snippet.title}
           >
             {video.snippet.title}
           </h3>
           <p
             ref={this.element}
-            title={this.TextFit() ? null : video.snippet.description}
+            title={this.TextFit() ? "" : video.snippet.description}
           >
             {video.snippet.description}
           </p>

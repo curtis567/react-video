@@ -1,7 +1,7 @@
 import youTube, { youTubeKey } from "../api/youtube";
 
 export async function youTubeSearch(
-  searchItem?: any,
+  searchItem?: string | null,
   getVideoList?: any,
   getVideoPageToken?: any,
   prevPageToken?: string,

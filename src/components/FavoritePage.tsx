@@ -17,8 +17,8 @@ interface FavoritePageState {
 }
 
 interface FavoritePageDispatchProps {
-  getVideoContentDetail: (detail: any) => void;
-  getLocalStorageId: (id: any) => void;
+  getVideoContentDetail: (detail: string) => void;
+  getLocalStorageId: (id: string) => void;
 }
 
 type BaseComponentProps = FavoritePageProps & FavoritePageDispatchProps;
